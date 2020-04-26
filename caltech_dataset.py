@@ -23,7 +23,13 @@ class Caltech(VisionDataset):
         self.split = split # This defines the split you are going to use
                            # (split files are called 'train.txt' and 'test.txt')
 
-        file_name = split + ".txt"
+        try:
+            parent = root.split("/")[-2]
+            print(parent)
+        except IndexError:
+            parent = ""
+
+        file_name = parent + split + ".txt"
         self.files = []
         self.labels = defaultdict(int)
 
