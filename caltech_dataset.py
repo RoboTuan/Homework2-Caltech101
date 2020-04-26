@@ -25,7 +25,7 @@ class Caltech(VisionDataset):
 
         try:
             parent = root.split("/")[-2] + "/"
-            print(parent)
+            #print(parent)
         except IndexError:
             parent = ""
 
