@@ -24,7 +24,7 @@ class Caltech(VisionDataset):
                            # (split files are called 'train.txt' and 'test.txt')
 
         try:
-            parent = root.split("/")[-2]
+            parent = root.split("/")[-2] + "/"
             print(parent)
         except IndexError:
             parent = ""
