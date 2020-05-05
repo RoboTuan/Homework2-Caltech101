@@ -53,8 +53,8 @@ class Caltech(VisionDataset):
                 if not regex.match(line):
                     label = line.split("/")[0]
                     self.files.append(root + "/" + line.rstrip())
-                    if label not in self.labels.keys():
-                        self.labels[label] = counter
+                    if label.lower() not in self.labels.keys():
+                        self.labels[label.lower()] = counter
                         counter += 1
 
         self.length = len(self.files)
