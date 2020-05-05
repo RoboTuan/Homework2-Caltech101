@@ -74,7 +74,7 @@ class Caltech(VisionDataset):
         # Image should be a PIL Image
         # label can be int
 
-        label_name = self.files[index].split("/")[1]
+        label_name = self.files[index].split("/")[1].lower()
 
         image, label = (pil_loader(self.files[index]), self.labels[label_name])
 
