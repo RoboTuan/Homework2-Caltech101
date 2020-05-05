@@ -24,12 +24,13 @@ class Caltech(VisionDataset):
                            # (split files are called 'train.txt' and 'test.txt')
 
         try:
-            parent = root.split("/")[-2] + "/"
-            #print(parent)
+            self.parent = root.split("/")[-2] + "/"
+            #print(self.parent)
         except IndexError:
-            parent = ""
+            self.parent = ""
 
-        file_name = parent + split + ".txt"
+        file_name = self.parent + split + ".txt"
+        #print(file_name)
         self.files = []
         self.labels = defaultdict(int)
 
@@ -52,6 +53,8 @@ class Caltech(VisionDataset):
             for line in f:
                 if not regex.match(line):
                     label = line.split("/")[0]
+                    #print(label)
+                    #print(root + "/" + line.rstrip())
                     self.files.append(root + "/" + line.rstrip())
                     if label.lower() not in self.labels.keys():
                         self.labels[label.lower()] = counter
@@ -74,8 +77,12 @@ class Caltech(VisionDataset):
         # Image should be a PIL Image
         # label can be int
 
-        label_name = self.files[index].split("/")[1].lower()
-
+        if self.parent != "":
+          label_name = self.files[index].split("/")[2].lower()
+        else:
+          label_name = self.files[index].split("/")[1].lower()
+          
+        #print(label_name)
         image, label = (pil_loader(self.files[index]), self.labels[label_name])
 
         # Applies preprocessing when accessing the image
